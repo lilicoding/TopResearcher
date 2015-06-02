@@ -109,6 +109,18 @@ public class SingleVenuePageParser extends DefaultParser
 			boolean newStart = true;
 			Item item = null;
 			
+			boolean noPageNumberInfo = true;
+			for (TagNode ele : itemTags)
+			{
+				String value = ele.getAttributeByName("itemprop");
+				if ("pagination".equals(value))
+				{
+					noPageNumberInfo = false;
+					break;
+				}
+			}
+			
+			
 			for (TagNode ele : itemTags)
 			{
 				if (newStart)
@@ -132,6 +144,14 @@ public class SingleVenuePageParser extends DefaultParser
 						{
 							String title = ele.getText().toString();
 							item.setTitle(title);
+							
+							if (noPageNumberInfo)
+							{
+								newStart = true;
+								if (item != null)
+									item.setPage(15); //assumption
+									items.add(item);
+							}
 						}
 					}
 					else if ("pagination".equals(value))
@@ -158,13 +178,13 @@ public class SingleVenuePageParser extends DefaultParser
 							//sometimes the page number could be 7:1-7:7 or 
 							item.setPage(1);
 						}
-						
-						
-						
+
 						newStart = true;
 						if (item != null)
 							items.add(item);
 					}
+					
+					
 				}
 			}
 		} 
