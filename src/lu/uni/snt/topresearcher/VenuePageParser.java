@@ -18,10 +18,16 @@ public class VenuePageParser
 		
 		//String venueURL = "http://dblp.uni-trier.de/db/conf/uss/index.html";
 		
-		String venueURL = "http://dblp.uni-trier.de/db/conf/ndss/";
+		//String venueURL = "http://dblp.uni-trier.de/db/conf/ndss/";
+		
+		//String venueURL = "http://dblp.uni-trier.de/db/conf/pldi/";
+		
+		//String venueURL = "http://dblp.uni-trier.de/db/conf/popl/";
+		
+		String venueURL = "http://dblp.uni-trier.de/db/conf/oopsla/";
 		
 		String content = Utils.getUriText(venueURL);
-		parse(content, "ndss");
+		parse(content, "oopsla");
 	}
 	
 	
